@@ -26,7 +26,6 @@ function getMatrixElementsSum(matrix) {
       }
     }
   }
-
   return sum;
 }
 
