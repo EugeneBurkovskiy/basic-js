@@ -13,10 +13,42 @@ const { NotImplementedError } = require('../extensions/index.js');
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  * 
  */
-function transform(/* arr */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function transform(arr) {
+  let deletedNumbers = [];
+  if (!Array.isArray(arr)) {
+    throw new Error("'arr' parameter must be an instance of the Array!");
+  }
+  let newArr = JSON.parse(JSON.stringify(arr));
+  if (newArr[0] == '--double-prev' || newArr[0] == '--discard-prev') {
+    newArr.splice(0, 1);
+  }
+  if (newArr[newArr.length - 1] == '--double-next' || newArr[newArr.length - 1] == '--discard-next') {
+    newArr.splice(newArr.length - 1, 1);
+  }
+  for (let i = 0; i < newArr.length; i++) {
+    switch (newArr[i]) {
+      case '--double-next':
+        newArr[i] = newArr[i + 1];
+        break;
+      case '--double-prev':
+        newArr[i] = newArr[i - 1];
+        break;
+      case '--discard-prev':
+        newArr.splice(i, 1);
+        newArr.splice(i - 1, 1);
+        i--;
+        break;
+      case '--discard-next':
+        newArr.splice(i, 1);
+        newArr.splice(i, 1);
+        newArr.splice(i, 1);
+        i--;
+        break;
+    }
+  }
+  return newArr;
 }
+console.log(transform([1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5]));
 
 module.exports = {
   transform

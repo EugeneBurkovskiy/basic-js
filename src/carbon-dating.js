@@ -29,7 +29,7 @@ function dateSample(sampleActivity) {
     return false;
   }
 }
-console.log(dateSample('3'));
+// console.log(dateSample('3'));
 
 module.exports = {
   dateSample

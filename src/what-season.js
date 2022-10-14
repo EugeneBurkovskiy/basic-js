@@ -13,15 +13,14 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function getSeason(date) {
   if (!date) {
-    throw new Error('Unable to determine the time of year!');
+    return 'Unable to determine the time of year!';
   }
   let month = date.getMonth();
-  // if (!(/\d+\-\d+\-\d+T\d+\:\d+\:\d+\.\d+z/ig.test(date.toString()))) {
-  //   throw new Error('Invalid date!');
-  // }
+
   if (date.getMilliseconds() === 0 || !date.getMilliseconds()) {
     throw new Error('Invalid date!');
   }
+
   let winter = [11, 0, 1,],
     spring = [2, 3, 4],
     summer = [5, 6, 7],
@@ -36,8 +35,6 @@ function getSeason(date) {
     return 'autumn';
   }
 }
-// console.log(getSeason());
-// console.log(getSeason(new Date(20192701)));
 
 module.exports = {
   getSeason
