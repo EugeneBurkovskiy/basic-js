@@ -24,8 +24,8 @@ class DepthCalculator {
     return 1 + depth;
   }
 }
-const check = new DepthCalculator();
-console.log(check.calculateDepth([[[]]]));
+// const check = new DepthCalculator();
+// console.log(check.calculateDepth([[[]]]));
 
 module.exports = {
   DepthCalculator
